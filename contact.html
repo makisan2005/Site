@@ -117,8 +117,7 @@ langBtns.forEach(btn => {
     const lang = btn.dataset.lang;
 
     transElements.forEach(el => {
-      // Changer texte
-      el.textContent = el.getAttribute("data-" + lang);
+     el.innerHTML = el.getAttribute("data-" + lang);
 
       // Changer placeholder si applicable
       if(el.placeholder !== undefined) {
