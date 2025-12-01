@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title data-fr="Faire un don - O'SURVIE" data-en="Donate - O'SURVIE">Faire un don - O'SURVIE</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo"><h1 data-fr="O'SURVIE" data-en="O'SURVIE">O'SURVIE</h1></div>
+
+    <!-- Bouton menu burger -->
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="a-propos.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="actions.html" data-fr="Actions" data-en="Actions">Actions</a>
+      <a href="galerie.html" data-fr="Galerie d'image" data-en="Gallery">Galerie d'image</a>
+      <a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="don.html" class="active" data-fr="Faire un don" data-en="Donate">Faire un don</a>
+      <a href="benevolat.html" data-fr="Bénévolat" data-en="Volunteering">Bénévolat</a>
+      <a href="evenements.html" data-fr="Événements" data-en="Events">Événements</a>
+
+
+      <!-- Switch langue -->
+      <div class="lang-switch">
+        <button data-lang="fr" class="active">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+
+      <!-- Langues dans menu mobile -->
+      <div class="lang-switch-mobile">
+        <button data-lang="fr" class="active">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2 data-fr="Soutenez nos actions" data-en="Support Our Actions">Soutenez nos actions</h2>
+    <p class="small" data-fr="Vos dons nous permettent de financer des actions directes sur le terrain. Merci pour votre soutien."
+       data-en="Your donations allow us to fund direct actions on the ground. Thank you for your support.">
+       Vos dons nous permettent de financer des actions directes sur le terrain. Merci pour votre soutien.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px;">
+      <div class="card">
+        <h3 data-fr="Don ponctuel" data-en="One-time Donation">Don ponctuel</h3>
+        <p class="small" data-fr="Un soutien ponctuel pour un projet précis." data-en="A one-time support for a specific project.">Un soutien ponctuel pour un projet précis.</p>
+        <a class="btn" href="https://www.helloasso.com/associations/o-survie/collectes/notre-generosite-change-nos-vies-et-eclaire-les-leurs" 
+           data-fr="Faire un don" data-en="Donate">Faire un don</a>
+      </div>
+
+      <div class="card">
+        <h3 data-fr="Don régulier" data-en="Regular Donation">Don régulier</h3>
+        <p class="small" data-fr="Soutenir durablement nos actions par un don mensuel." data-en="Support our actions sustainably with a monthly donation.">Soutenir durablement nos actions par un don mensuel.</p>
+        <a class="btn" href="https://www.helloasso.com/associations/o-survie/collectes/notre-generosite-change-nos-vies-et-eclaire-les-leurs" 
+           data-fr="Devenir donateur" data-en="Become a donor">Devenir donateur</a>
+      </div>
+
+      <div class="card">
+        <h3 data-fr="Mécénat / Partenariat" data-en="Sponsorship / Partnership">Mécénat / Partenariat</h3>
+        <p class="small" data-fr="Entreprises et mécènes : contactez-nous pour construire des projets communs."
+           data-en="Companies and sponsors: contact us to build joint projects.">Entreprises et mécènes : contactez-nous pour construire des projets communs.</p>
+        <a class="btn" href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      </div>
+    </div>
+
+    <p class="small" style="margin-top:16px;" data-fr="O'SURVIE délivre des reçus fiscaux selon la législation en vigueur."
+       data-en="O'SURVIE issues tax receipts according to current legislation.">
+       O'SURVIE délivre des reçus fiscaux selon la législation en vigueur.
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div data-fr="© 2025 O'SURVIE" data-en="© 2025 O'SURVIE">© 2025 O'SURVIE</div>
+    <div class="small" data-fr="CGU — Mentions légales" data-en="Terms & Legal Notice">CGU — Mentions légales</div>
+  </div>
+</footer>
+
+<!-- JS : menu burger + traduction -->
+<script>
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav');
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  burger.setAttribute('aria-expanded', nav.classList.contains('active'));
+});
+
+// --- Traduction ---
+const langBtns = document.querySelectorAll("[data-lang]");
+const transElements = document.querySelectorAll("[data-fr]");
+
+langBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    langBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const lang = btn.dataset.lang;
+
+    transElements.forEach(el => {
+      // Changer texte
+      el.textContent = el.getAttribute("data-" + lang);
+
+      // Changer placeholder si applicable
+      if(el.placeholder !== undefined) {
+        const ph = el.getAttribute("data-" + lang + "-placeholder");
+        if(ph) el.placeholder = ph;
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

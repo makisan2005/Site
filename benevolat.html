@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-fr="Bénévolat - O'SURVIE" data-en="Volunteering - O'SURVIE">Bénévolat - O'SURVIE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo"><h1 data-fr="O'SURVIE" data-en="O'SURVIE">O'SURVIE</h1></div>
+
+    <!-- Bouton menu burger -->
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="a-propos.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="actions.html" data-fr="Actions" data-en="Actions">Actions</a>
+      <a href="galerie.html" data-fr="Galerie d'image" data-en="Gallery">Galerie d'image</a>
+      <a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="don.html" data-fr="Faire un don" data-en="Donate">Faire un don</a>
+      <a href="benevolat.html" class="active" data-fr="Bénévolat" data-en="Volunteering">Bénévolat</a>
+      <a href="evenements.html" data-fr="Événements" data-en="Events">Événements</a>
+
+      <!-- Switch langue -->
+      <div class="lang-switch">
+        <button data-lang="fr" class="active">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+
+      <!-- Langues dans menu mobile -->
+      <div class="lang-switch-mobile">
+        <button data-lang="fr" class="active">FR</button>
+        <button data-lang="en">EN</button>
+      </div>	
+     
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container columns">
+    <div>
+      <h2 data-fr="Devenir bénévole / partenaire" data-en="Become a Volunteer / Partner">Devenir bénévole / partenaire</h2>
+      <p class="small" data-fr="Rejoignez notre équipe ou proposez un partenariat : la force de l'action repose sur la collaboration." 
+        data-en="Join our team or propose a partnership: the strength of action relies on collaboration.">
+        Rejoignez notre équipe ou proposez un partenariat : la force de l'action repose sur la collaboration.
+      </p>
+
+      <h3 data-fr="Formulaire de candidature" data-en="Application Form">Formulaire de candidature</h3>
+      <div class="form">
+        <form action="#" method="post">
+          <input name="nom" placeholder="Nom complet" data-fr-placeholder="Nom complet" data-en-placeholder="Full Name" required>
+          <input name="email" type="email" placeholder="Email" data-fr-placeholder="Email" data-en-placeholder="Email" required>
+          <textarea name="motivation" rows="5" placeholder="Pourquoi souhaitez-vous nous rejoindre ?" 
+            data-fr-placeholder="Pourquoi souhaitez-vous nous rejoindre ?" 
+            data-en-placeholder="Why do you want to join us?" required></textarea>
+          <button class="btn" type="submit" data-fr="Postuler" data-en="Apply">Postuler</button>
+        </form>
+      </div>
+    </div>
+
+    <aside>
+      <div class="card">
+        <h3 data-fr="Pourquoi s'engager ?" data-en="Why Get Involved?">Pourquoi s'engager ?</h3>
+        <p class="small" data-fr="Acquérir de l'expérience, rencontrer des personnes, aider concrètement." 
+          data-en="Gain experience, meet people, make a tangible difference.">
+          Acquérir de l'expérience, rencontrer des personnes, aider concrètement.
+        </p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div data-fr="© 2025 O'SURVIE" data-en="© 2025 O'SURVIE">© 2025 O'SURVIE</div>
+    <div class="small" data-fr="Contact — Partenaires" data-en="Contact — Partners">Contact — Partenaires</div>
+  </div>
+</footer>
+
+<!-- JS : menu burger + traduction -->
+<script>
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav');
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  burger.setAttribute('aria-expanded', nav.classList.contains('active'));
+});
+
+// --- Traduction ---
+const langBtns = document.querySelectorAll("[data-lang]");
+const transElements = document.querySelectorAll("[data-fr]");
+
+langBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    langBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const lang = btn.dataset.lang;
+
+    transElements.forEach(el => {
+      // Changer texte
+      el.textContent = el.getAttribute("data-" + lang);
+
+      // Changer placeholder si applicable
+      if(el.placeholder !== undefined) {
+        const ph = el.getAttribute("data-" + lang + "-placeholder");
+        if(ph) el.placeholder = ph;
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
