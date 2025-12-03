@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-fr="Événements - O'SURVIE" data-en="Events - O'SURVIE">Événements - O'SURVIE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header avec menu burger -->
+<header class="header">
+  <div class="container header-inner">
+    <!-- Logo -->
+    <div class="logo"><h1 style="font-size: 30px;" data-fr="O'SURVIE" data-en="O'SURVIE">O'SURVIE</h1></div>
+
+    <!-- Bouton burger -->
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navigation principale -->
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="a-propos.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="actions.html" data-fr="Actions" data-en="Actions">Actions</a>
+	<a href="galerie.html" data-fr="Galerie d'image" data-en="Gallery">Galerie d'image</a>
+      <a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="don.html" data-fr="Faire un don" data-en="Donate">Faire un don</a>
+      <a href="benevolat.html" data-fr="Bénévolat" data-en="Volunteering">Bénévolat</a>
+      <a href="evenements.html" class="active" data-fr="Événements" data-en="Events">Événements</a>
+      
+
+      <!-- Switch langue -->
+      <div class="lang-switch">
+        <button data-lang="fr" class="active"><img src="image/France.png" alt="FR" width=18px height=18px></button>
+        <button data-lang="en"><img src="image/RU.webp" alt="EN" width=18px height=18px></button>
+      </div>
+
+          <!-- Langues dans menu mobile -->
+      <div class="lang-switch-mobile">
+        <button data-lang="fr" class="active"><img src="image/France.png" alt="FR" width=18px height=18px></button>
+        <button data-lang="en"><img src="image/RU.webp" alt="EN" width=18px height=18px></button>
+      </div>	
+
+     </nav>
+  </div>
+</header>
+
+<!-- Section événements -->
+<section class="section">
+  <div class="container">
+    <h2 data-fr="Planning des événements" data-en="Events Schedule">Planning des événements</h2>
+    <p class="small" data-fr="Retrouvez nos prochains ateliers, collectes et rendez-vous ouverts." 
+       data-en="Check out our upcoming workshops, drives and open meetings.">
+       Retrouvez nos prochains ateliers, collectes et rendez-vous ouverts.
+    </p>
+
+    <div style="margin-top:18px; display:grid; gap:10px;">
+      <div class="card" data-fr="<strong>Collecte alimentaire</strong> — 12 décembre 2025 — Centre communautaire"
+           data-en="<strong>Food Drive</strong> — December 12, 2025 — Community Center">
+        <strong>Collecte alimentaire</strong> — 12 décembre 2025 — Centre communautaire
+      </div>
+      <div class="card" data-fr="<strong>Atelier CV & lettre</strong> — 20 janvier 2026 — O'Café"
+           data-en="<strong>Resume & Cover Letter Workshop</strong> — January 20, 2026 — O'Café">
+        <strong>Atelier CV & lettre</strong> — 20 janvier 2026 — O'Café
+      </div>
+      <div class="card" data-fr="<strong>Jardin partagé</strong> — 14 mars 2026 — O'Vert demain"
+           data-en="<strong>Community Garden</strong> — March 14, 2026 — O'Vert Demain">
+        <strong>Jardin partagé</strong> — 14 mars 2026 — O'Vert demain
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div data-fr="© 2025 O'SURVIE" data-en="© 2025 O'SURVIE">© 2025 O'SURVIE</div>
+    <div class="small" data-fr="Contact — Mentions" data-en="Contact — Legal">Contact — Mentions</div>
+  </div>
+</footer>
+
+<!-- JS menu burger + traduction -->
+<script>
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav');
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  burger.setAttribute('aria-expanded', nav.classList.contains('active'));
+});
+
+// --- Traduction ---
+const langBtns = document.querySelectorAll("[data-lang]");
+const transElements = document.querySelectorAll("[data-fr]");
+
+langBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    langBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const lang = btn.dataset.lang;
+
+    transElements.forEach(el => {
+      // Changer texte
+      el.innerHTML = el.getAttribute("data-" + lang);
+
+      // Changer placeholder si applicable
+      if(el.placeholder !== undefined) {
+        const ph = el.getAttribute("data-" + lang + "-placeholder");
+        if(ph) el.placeholder = ph;
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
